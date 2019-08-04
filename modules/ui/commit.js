@@ -68,7 +68,7 @@ export function uiCommit(context) {
             var detected = utilDetect();
             tags = {
                 comment: context.storage('comment') || '',
-                created_by: ('RapiD ' + context.rapidContext().version).substr(0, 255),
+                created_by: ('RapiDly Private/0.1 (from RapiD ' + context.rapidContext().version+')').substr(0, 255),
                 host: detected.host.substr(0, 255),
                 locale: detected.locale.substr(0, 255)
             };
