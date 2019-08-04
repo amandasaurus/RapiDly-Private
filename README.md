@@ -8,6 +8,40 @@ For information on iD, see their [GitHub repository](https://github.com/openstre
 
 Facebook's policy & track record on privacy speaks for itself. The original version of RapiD uses images and data directly from `www.facebook.com`, which harms the user's privacy. This version proxies all Facebook access through `www.technomancy.org`, which should help hide personally identifying information.
 
+# Settings to change
+
+To proxy connections to Facebook, this change is enough:
+
+    diff --git a/data/imagery.json b/data/imagery.json
+    index af1a6761f..d5d904f67 100644
+    --- a/data/imagery.json
+    +++ b/data/imagery.json
+    @@ -14069,7 +14069,7 @@
+           "id": "Maxar-FB",
+           "name": "Facebook's Map With AI - Maxar Imagery",
+           "type": "tms",
+    -      "template": "https://www.facebook.com/maps/ml_roads?theme=ml_road_vector&collaborator=fbid&token=ASZUVdYpCkd3M6ZrzjXdQzHulqRMnxdlkeBJWEKOeTUoY_Gwm9fuEd2YObLrClgDB_xfavizBsh0oDfTWTF7Zb4C&hash=ASYM8LPNy8k1XoJiI7A&result_type=satellite_raster_tile&materialize=true&x={x}&y={y}&z={zoom}",
+    +      "template": "https://www.technomancy.org/openstreetmap/rapidlyprivate/fb/ml_roads?theme=ml_road_vector&collaborator=fbid&token=ASZUVdYpCkd3M6ZrzjXdQzHulqRMnxdlkeBJWEKOeTUoY_Gwm9fuEd2YObLrClgDB_xfavizBsh0oDfTWTF7Zb4C&hash=ASYM8LPNy8k1XoJiI7A&result_type=satellite_raster_tile&materialize=true&x={x}&y={y}&z={zoom}",
+           "zoomExtent": [11, 18],
+           "terms_url": "https://wiki.openstreetmap.org/wiki/DigitalGlobe",
+           "terms_text": "Terms",
+    diff --git a/modules/services/fb_ml_roads.js b/modules/services/fb_ml_roads.js
+    index 9a4751df0..dfb3260a2 100644
+    --- a/modules/services/fb_ml_roads.js
+    +++ b/modules/services/fb_ml_roads.js
+    @@ -8,7 +8,7 @@ import { osmEntity, osmNode, osmWay } from '../osm';
+     import { utilRebind, utilStringQs, utilTiler } from '../util';
+    
+     // constants
+    -var API_URL = 'https://www.facebook.com/maps/ml_roads?conflate_with_osm=true&theme=ml_road_vector&collaborator=fbid&token=ASZUVdYpCkd3M6ZrzjXdQzHulqRMnxdlkeBJWEKOeTUoY_Gwm9fuEd2YObLrClgDB_xfavizBsh0oDfTWTF7Zb4C&hash=ASYM8LPNy8k1XoJiI7A';
+    +var API_URL = 'https://www.technomancy.org/openstreetmap/rapidlyprivate/fb/ml_roads?conflate_with_osm=true&theme=ml_road_vector&collaborator=fbid&token=ASZUVdYpCkd3M6ZrzjXdQzHulqRMnxdlkeBJWEKOeTUoY_Gwm9fuEd2YObLrClgDB_xfavizBsh0oDfTWTF7Zb4C&hash=ASYM8LPNy8k1XoJiI7A';
+     var TILEZOOM = 16;
+     var tiler = utilTiler().zoomExtent([TILEZOOM, TILEZOOM]);
+     var dispatch = d3_dispatch('loadedData');
+
+
+# Current implementation
+
 ## Self Host
 
 The version in this repository uses `https://www.technomancy.org/openstreetmap/rapidlyprivate/fb/` which has the following apache settings.
