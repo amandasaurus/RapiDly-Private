@@ -2,7 +2,7 @@
 
 RapiDly Private is an enhanced version of [RapiD editor]() from Facebook, which is based on the [iD editor](https://github.com/openstreetmap/iD).
 
-For information on iD, see their [GitHub repository](https://github.com/openstreetmap/iD), and the [iD README](https://github.com/openstreetmap/iD/blob/master/README.md). You can also view the original version of [RapiD's README](./README_RapiD.md).
+For information on iD, see their [GitHub repository](https://github.com/openstreetmap/iD), and the [iD README](https://github.com/openstreetmap/iD/blob/master/README.md). You can also view the original version of [RapiD's README](./README-RapiD.md).
 
 ## Privacy
 
